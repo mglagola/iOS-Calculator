@@ -100,7 +100,13 @@
         else if ([operand isEqualToString:@"x"])
             lastKnownValue *= currentValue;
         else if ([operand isEqualToString:@"/"])
-            lastKnownValue /= currentValue;
+        {
+            //You can't divide by 0! 
+            if (currentValue == 0)
+                [self clearPressed:nil];
+            else
+                lastKnownValue /= currentValue;
+        }
     }
     else
         lastKnownValue = currentValue;
